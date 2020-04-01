@@ -29,8 +29,8 @@ python manage.py startapp app_name
 
 ```python
 # 使用MySQL数据库
-DATABASES = {	DATABASES = {
-    'default': {	    'default': {
+DATABASES = {DATABASES = {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'crm',
         'USER': 'root',

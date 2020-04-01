@@ -40,4 +40,11 @@ git push -u origin master
 ```shell
 git checkout commit-id
 ```
-s
+
+## 恢复操作
+
+不想修改原先的已提交的内容
+
+```shell
+git checkout .
+```
