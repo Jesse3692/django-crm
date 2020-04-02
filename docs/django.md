@@ -1,4 +1,32 @@
-# 初始化相关
+# Django项目
+
+## 项目前置操作
+
+### 对系统的应用进行初始化操作
+
+Django项目本身是会带有一些，系统相关的表的有`admin`， `auth`， `contenttypes`， `sessions`
+
+```python
+python manage.py makemigrations
+python manage.py migrate
+```
+
+### 创建超级管理员账号
+
+```python
+python manage.py createsuperuser  # 账号默认为当前计算机用户，邮箱可为空，密码最少8位必须包含字母和数字
+```
+
+### 在后台管理中注册客户类
+
+```python
+# \crm\admin.py
+from django.contrib import admin
+from crm import models
+
+# Register your models here.
+admin.site.register(models.Customer)
+```
 
 ## 项目相关
 
@@ -94,9 +122,9 @@ urlpatterns = [
 
 ```python
 # 将model层转化为迁移文件
-python manage.py makemigration
+python manage.py makemigrations app_name
 # 执行迁移文件，更新数据库
-python manage.py migrate
+python manage.py migrate app_name
 ```
 
 ### 查看迁移文件的执行状态
@@ -104,3 +132,4 @@ python manage.py migrate
 ```python
 python manage.py showmigrations
 ```
+

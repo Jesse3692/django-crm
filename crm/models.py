@@ -107,6 +107,10 @@ class Customer(models.Model):
     consultant = models.ForeignKey(
         'UserProfile', verbose_name="销售", related_name='customers', blank=True, null=True, )
     class_list = models.ManyToManyField('ClassList', verbose_name="已报班级", )
+    
+    # 将客户对象显示为对应内容
+    def __str__(self):
+        return "{}-{}".format(self.name, self.qq)
 
 
 class Campuses(models.Model):
