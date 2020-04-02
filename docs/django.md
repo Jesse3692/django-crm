@@ -87,3 +87,20 @@ urlpatterns = [
     url(r'^crm/', include('crm.urls')),
 ]
 ```
+
+## 数据库相关
+
+### 进行数据库迁移
+
+```python
+# 将model层转化为迁移文件
+python manage.py makemigration
+# 执行迁移文件，更新数据库
+python manage.py migrate
+```
+
+### 查看迁移文件的执行状态
+
+```python
+python manage.py showmigrations
+```
