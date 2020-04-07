@@ -16,7 +16,7 @@
             <form action="" method="post" id="loginForm" novalidate="novalidate">
                 {% csrf_token %}
                 <div>
-                    <input type="text" name="username" class="username valid" placeholder="用户名" autocomplete="off" value="admin"
+                    <input type="text" name="username" class="username valid" placeholder="用户名" autocomplete="off"
                            aria-required="true">
                 </div>
                 <div>
@@ -24,6 +24,7 @@
                            onpaste="return false" aria-required="true" aria-invalid="true">
                     <label id="password-error" class="error" for="password">{{ login_error }}</label>
                 </div>
+                <!-- <p>{{ login_error }}</p> -->
                 <button id="submit" type="submit">登 陆</button>
             </form>
             <a href="register.html">

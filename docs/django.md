@@ -28,6 +28,13 @@ from crm import models
 admin.site.register(models.Customer)
 ```
 
+### 修改语言
+
+```python
+# \django_crm\settings.py
+LANGUAGE_CODE = 'zh-hans'
+```
+
 ## 项目相关
 
 ### 创建项目
