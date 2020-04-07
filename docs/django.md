@@ -140,3 +140,59 @@ python manage.py migrate app_name
 python manage.py showmigrations
 ```
 
+## 使用modelforms在前端生成表单
+
+### 首先编写modelforms类
+
+```python
+# crm\forms.py
+from django import forms
+from crm import models
+from django.core.exceptions import ValidationError
+import hashlib
+
+
+# 注册的form
+class RegForm(forms.ModelForm):
+    class Meta:
+        # 元类
+        model = models.UserProfile  # 指定model
+        fields = '__all__'
+```
+
+### 然后在视图函数中应用
+
+```python
+# 注册
+def register(request):
+    if request.method == 'POST':
+        form_obj = RegForm(request.POST)
+        print(form_obj)
+        if form_obj.is_valid():
+            form_obj.save()
+            print(form_obj.is_valid())
+        return render(request, 'register.html')
+    else:
+        form_obj =RegForm()
+        return render(request, 'register.html', {'form_obj':form_obj})
+```
+
+### 最后在前端页面中应用
+
+```html
+<div class="col-md-8 col-md-offset-2" style="margin-top: 80px;">
+        <form action="" class="form-horizontal" novalidate method="POST">
+            {% csrf_token %}
+            <!-- 用户名 -->
+            <div class="form-group">
+                <label for="{{ form_obj.username.id_for_lable }}" class="col-sm-2 control-lable">
+                    {{ form_obj.username.lable }}
+                </label>
+                <div class="col-sm-10">{{ form_obj.username }}</div>
+            </div>
+            <!-- .... -->
+            <button type="submit">提交</button>
+        </form>
+</div>
+```
+

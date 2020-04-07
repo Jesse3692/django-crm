@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect, reverse
 from crm import models
+from .forms import RegForm
 
 # Create your views here.
 
@@ -9,7 +10,16 @@ def index(request):
 
 # 注册
 def register(request):
-    return render(request, 'register.html')
+    if request.method == 'POST':
+        form_obj = RegForm(request.POST)
+        print(form_obj)
+        if form_obj.is_valid():
+            form_obj.save()
+            print(form_obj.is_valid())
+        return render(request, 'register.html')
+    else:
+        form_obj =RegForm()
+        return render(request, 'register.html', {'form_obj':form_obj})
 
 # 登录
 def login(request):

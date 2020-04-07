@@ -65,7 +65,7 @@ class UserProfile(models.Model):
     """
     用户表
     """
-    username = models.EmailField(max_length=255, unique=True, )
+    username = models.EmailField(verbose_name='邮箱', max_length=255, unique=True, )
     password = models.CharField(verbose_name='密码', max_length=128)
     name = models.CharField('名字', max_length=32)
     department = models.ForeignKey(
@@ -75,6 +75,9 @@ class UserProfile(models.Model):
     memo = models.TextField('备注', blank=True, null=True, default=None)
     date_joined = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
+    # 将用户对象显示为对应内容
+    def __str__(self):
+        return "{}-{}".format(self.username, self.name)
 
 
 class Customer(models.Model):
